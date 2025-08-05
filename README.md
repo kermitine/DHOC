@@ -1,1 +1,1 @@
-# Huff
+# Dominguez Hills Observatory Controller
