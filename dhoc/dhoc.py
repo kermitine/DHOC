@@ -4,7 +4,16 @@ from dhoc.angles.getazimuth import get_azimuth
 from utils.KermLib.KermLib import *
 from dhoc.getdata.getplanet import *
 
+'''
+CURRENT TO-DO NOTES
 
+- CALCULATE STRENGTH OF MOTOR REQUIRED TO PIVOT TELESCOPE PLATFORM
+- FIND PARTS
+- ASSEMBLE SCHEMATIC
+
+
+
+'''
 
 KermLib.ascii_run()
 print(f'Dominguez Hills Observatory Controller V{version}')
