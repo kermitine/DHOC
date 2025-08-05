@@ -2,6 +2,9 @@
 
 # latitude and longitude of observatory: 33.863907,-118.255190
 
+# cross reference with planetscalc azimuth calculator
+
+
 from skyfield.api import load
 from skyfield.toposlib import Topos
 ts = load.timescale()
@@ -9,7 +12,7 @@ ts = load.timescale()
 
 def get_azimuth(selected_planet, lat, lon):
     # Load planetary data
-    planets = load('de421.bsp')  # Ephemeris file
+    planets = load('de441.bsp')  # Ephemeris file
     earth = planets['earth']
     target = planets[selected_planet]  # or any other planet
 

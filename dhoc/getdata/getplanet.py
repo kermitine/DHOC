@@ -11,4 +11,4 @@ def get_planet():
                 break
             except ValueError:
                 print(prompt_input_not_recognized)
-    return target_planet.capitalize()
+    return (target_planet.capitalize() + ' Barycenter')
