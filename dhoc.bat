@@ -1,2 +1,2 @@
 @echo off
-py -m dhoc.dhoc
+py -m dhoc.main
