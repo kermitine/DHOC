@@ -51,6 +51,12 @@ class Ui_MainWindow(object):
         font.setPointSize(14)
         self.button_findazimuth.setFont(font)
         self.button_findazimuth.setObjectName("button_findazimuth")
+        self.console_textedit = QtWidgets.QPlainTextEdit(parent=self.centralwidget)
+        self.console_textedit.setEnabled(True)
+        self.console_textedit.setGeometry(QtCore.QRect(0, 400, 801, 211))
+        self.console_textedit.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
+        self.console_textedit.setReadOnly(True)
+        self.console_textedit.setObjectName("console_textedit")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -61,6 +67,8 @@ class Ui_MainWindow(object):
 
         self.button_findazimuth.clicked.connect((lambda: self.find_azimuth_clicked(self.line_lat.text(), self.line_lon.text(), self.line_planet.text())))
 
+    def send_to_console(self, text):
+        self.console_textedit.insertPlainText(f"Calculated Azimuth: {str(text)} {'\n'}")
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -72,9 +80,7 @@ class Ui_MainWindow(object):
 
     def find_azimuth_clicked(self, lat, lon, planet):
         azimuth = get_azimuth(planet, float(lat), float(lon))
-        return azimuth
-
-
+        self.send_to_console(azimuth)
 
 if __name__ == "__main__":
     import sys

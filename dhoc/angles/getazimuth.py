@@ -22,5 +22,4 @@ def get_azimuth(selected_planet, lat, lon):
     t = ts.now()
     astrometric = location.at(t).observe(target)
     alt, az, distance = astrometric.apparent().altaz()
-    print(f'Compass Azimuth from DH Observatory to {selected_planet}: {az.degrees}')
-    return az
+    return az.degrees
