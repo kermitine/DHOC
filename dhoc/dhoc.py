@@ -19,8 +19,6 @@ KermLib.ascii_run()
 print(f'Dominguez Hills Observatory Controller V{version}')
 print('\n' * 2)
 
-
-
 while True:
     selected_planet = get_planet()
     get_azimuth(selected_planet, dh_observatory_lat, dh_observatory_lon )
