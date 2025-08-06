@@ -11,6 +11,7 @@ ts = load.timescale()
 
 
 def get_azimuth(selected_planet, lat, lon):
+    global ts 
     planets = load('de441.bsp')  # Ephemeris file
     earth = planets['earth']
 

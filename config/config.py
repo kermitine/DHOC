@@ -5,7 +5,10 @@ motor_rpm = 3000
 gear_ratio = 100
 stepper_motor_steps = 200
 
-
+# arduino variables
+serial_port = 3
+arduino_port = 'COM' + str(serial_port)
+baud_rate = 9600
 
 
 # positional variabkes

@@ -9,6 +9,7 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 from config.config import *
 from dhoc.angles.getazimuth import *
+from dhoc.arduino.serialtest import *
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -204,6 +205,8 @@ class Ui_MainWindow(object):
                 return None
 
             self.send_to_console('PLACEHOLDER: NEEDS POINT TELESCOPE CODE ADDED')
+            arduino_test_loop()
+
         else:
             self.send_to_console('ERROR: One or multiple invalid values detected. Please try again.')
             return None
