@@ -123,6 +123,7 @@ class Ui_MainWindow(object):
         self.send_to_console(f'Dominguez Hills Observatory Controller V{version} initialized')
         self.send_to_console(f'Created by Ayrik Nabirahni')
         self.button_findazimuth.clicked.connect((lambda: self.find_azimuth_clicked(self.line_lat.text(), self.line_lon.text(), self.line_planet.text())))
+        self.button_pointtelescope.clicked.connect((lambda: self.point_telescope_clicked(self.line_lat.text(), self.line_lon.text(), self.line_planet.text(), self.line_motorsteps.text(), self.line_gearratio.text(), self.line_motorrpm.text())))
 
 
     def retranslateUi(self, MainWindow):
@@ -134,7 +135,7 @@ class Ui_MainWindow(object):
         self.line_lon.setPlaceholderText(_translate("MainWindow", "-118.255190"))
         self.line_planet.setPlaceholderText(_translate("MainWindow", "Mars"))
         self.label_planet.setText(_translate("MainWindow", "Target Planet"))
-        self.button_findazimuth.setText(_translate("MainWindow", "Find Azimuth"))
+        self.button_findazimuth.setText(_translate("MainWindow", "Show Azimuth"))
         self.label_output.setText(_translate("MainWindow", "Output"))
         self.label_lon_2.setText(_translate("MainWindow", "Gear Ratio (if none, enter 1)"))
         self.line_motorsteps.setPlaceholderText(_translate("MainWindow", "200"))
@@ -173,7 +174,40 @@ class Ui_MainWindow(object):
             self.send_to_console('ERROR: One or multiple invalid values detected. Please try again.')
             return None
         
+    def point_telescope_clicked(self, lat, lon, planet, motor_steps, gear_ratio, motor_rpm):
+        lat = lat.strip()
+        lon = lon.strip()
+        planet_bary = (planet.strip()) + ' Barycenter'
 
+        motor_steps = motor_steps.strip()
+        gear_ratio = gear_ratio.strip()
+        motor_rpm = motor_rpm.strip()
+
+
+
+
+        if lat != None and lon != None and planet_bary != None and motor_steps != None and gear_ratio != None and motor_rpm != None: 
+            try:
+                lat = float(lat)
+                lon = float(lon)
+                planet_bary = str(planet_bary)
+                motor_steps = int(motor_steps)
+                gear_ratio = int(gear_ratio)
+                motor_rpm = int(motor_rpm)
+            except ValueError:
+                self.send_to_console('ERROR: One or multiple incorrect values detected. Please try again.')
+                return None
+            
+            azimuth = get_azimuth(planet_bary, float(lat), float(lon))
+            if azimuth == 'noplanet':
+                self.send_to_console(f'ERROR: No planet by the name of "{planet}" found. Please try again.')
+                return None
+
+            self.send_to_console('PLACEHOLDER: NEEDS POINT TELESCOPE CODE ADDED')
+        else:
+            self.send_to_console('ERROR: One or multiple invalid values detected. Please try again.')
+            return None
+        
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
