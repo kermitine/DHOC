@@ -1,3 +1,0 @@
-# CALIBRATE TELESCOPE TO NORTH-POINTING POSITION
-
-# QMC5883L arduino module potentially?
