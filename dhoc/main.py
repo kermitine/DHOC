@@ -152,21 +152,25 @@ class Ui_MainWindow(object):
     def find_azimuth_clicked(self, lat, lon, planet):
         lat = lat.strip()
         lon = lon.strip()
-        planet = (planet.strip()) + ' Barycenter'
+        planet_bary = (planet.strip()) + ' Barycenter'
 
-        if lat != None and lon != None and planet != None: 
+        if lat != None and lon != None and planet_bary != None: 
             try:
                 lat = float(lat)
                 lon = float(lon)
-                planet = str(planet)
+                planet_bary = str(planet_bary)
             except ValueError:
                 self.send_to_console('ERROR: One or multiple incorrect values detected. Please try again.')
                 return None
             
-            azimuth = get_azimuth(planet, float(lat), float(lon))
+            azimuth = get_azimuth(planet_bary, float(lat), float(lon))
+            if azimuth == 'noplanet':
+                self.send_to_console(f'ERROR: No planet by the name of "{planet}" found. Please try again.')
+                return None
+
             self.send_to_console(f"Calculated Azimuth: {azimuth} degrees")
         else:
-            self.send_to_console('ERROR: One or multiple incorrect values detected. Please try again.')
+            self.send_to_console('ERROR: One or multiple invalid values detected. Please try again.')
             return None
         
 

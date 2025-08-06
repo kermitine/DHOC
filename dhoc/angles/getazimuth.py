@@ -13,7 +13,11 @@ ts = load.timescale()
 def get_azimuth(selected_planet, lat, lon):
     planets = load('de441.bsp')  # Ephemeris file
     earth = planets['earth']
-    target = planets[selected_planet]  # or any other planet
+
+    try:
+        target = planets[selected_planet]  # or any other planet
+    except ValueError:
+        return 'noplanet'
 
     location = earth + Topos(lat, lon)
 
