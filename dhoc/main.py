@@ -18,7 +18,7 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 from config.config import *
 from dhoc.angles.getazimuth import *
-from dhoc.arduino.serialtest import *
+from dhoc.arduino.serial.serialtest import *
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
