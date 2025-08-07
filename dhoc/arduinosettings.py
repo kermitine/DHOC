@@ -59,10 +59,8 @@ class Arduino_settings(object):
         self.line_port.setPlaceholderText(_translate("Dialog", "3"))
 
     def buttonbox_ok_pressed(self, port_number, baud):
-        global arduino_port_name
-        global baud_rate
-        arduino_port_name = arduino_port(port_number)
-        baud_rate = baud
+        arduino_settings['port'] = f'COM{port_number}'
+        arduino_settings['baud_rate'] = baud
         
 
 

@@ -7,6 +7,12 @@ stepper_motor_steps = 200
 
 # arduino variables
 baud_rate = 9600
+
+arduino_settings = {
+    'port': 'COM3',
+    'baud_rate': 9600
+}
+
 arduino_port = lambda port: 'COM' + str(port)
 arduino_port_name = arduino_port(3)
 
