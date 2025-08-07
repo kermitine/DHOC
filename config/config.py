@@ -6,9 +6,9 @@ gear_ratio = 100
 stepper_motor_steps = 200
 
 # arduino variables
-serial_port = 3
-arduino_port = 'COM' + str(serial_port)
 baud_rate = 9600
+arduino_port = lambda port: 'COM' + str(port)
+arduino_port_name = arduino_port(3)
 
 
 # positional variabkes
