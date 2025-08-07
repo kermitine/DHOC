@@ -1,12 +1,12 @@
 version = '0.0.4'
 
-motor_settings = {
+motor_settings = { # defaults
     'rpm': 3000,
     'gear_ratio': 100,
     'stepper_motor_steps': 200
 }
 
-arduino_settings = {
+arduino_settings = { # defaults
     'port': 'COM3',
     'baud_rate': 9600,
     'port_number': 3

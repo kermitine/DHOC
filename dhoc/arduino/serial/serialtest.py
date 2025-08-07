@@ -1,6 +1,6 @@
 import serial
 import time
-from config.config import *
+from config.settings import *
 
 
 
