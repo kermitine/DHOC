@@ -1,4 +1,9 @@
-# Copyright 2025 Ayrik Nabirahni
+"""
+Copyright (C) 2025 Ayrik Nabirahni. This file is licensed under
+the AGPLv3 license, and is apart of the DHOC project.
+See LICENSE and README for more details.
+"""
+
 from PyQt6 import QtCore, QtGui, QtWidgets
 from config.settings import *
 from dhoc.angles.getazimuth import *
