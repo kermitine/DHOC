@@ -1,6 +1,8 @@
-import serial
-import time
-from config.settings import *
+"""
+Copyright (C) 2025 Ayrik Nabirahni. This file
+is apart of the DHOC project, and licensed under
+the GNU AGPL-3.0-or-later. See LICENSE and README for more details.
+"""
 
 """
 Test to see if PySerial is working and communicating with the Arduino board.
@@ -10,6 +12,10 @@ INSTRUCTIONS:
 3) Run this code. Ensure that the port and baud rate is correct (if not, edit in config.settings)
 4) LED should turn on for 2 secs, then off.
 """
+
+import serial
+import time
+from config.settings import *
 
 def arduino_test_loop(main_window_object):
     # Open the serial connection
