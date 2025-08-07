@@ -216,6 +216,8 @@ class Ui_MainWindow(object):
 
             # TELESCOPE POINTING LOGIC GOES HERE -------------
             self.send_to_console(f'Opening serial at {arduino_port} on baud {baud_rate}')
+            QtWidgets.QApplication.processEvents()  # Force GUI to process and update now
+
             arduino_test_loop(self)
             # TELESCOPE POINTING LOGIC GOES HERE -------------
 
