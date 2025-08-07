@@ -11,7 +11,7 @@
 # GNU Affero General Public License for more details.
 
 # You should have received a copy of the GNU Affero General Public License
-# along with this program. If not, see <https://www.gnu.org/licenses/>.
+# along with this program. If not, see https://www.gnu.org/licenses.
 
 
 
@@ -213,8 +213,10 @@ class Ui_MainWindow(object):
                 self.send_to_console(f'ERROR: No planet by the name of "{planet}" found. Please try again.')
                 return None
 
-            self.send_to_console('PLACEHOLDER: NEEDS POINT TELESCOPE CODE ADDED')
-            arduino_test_loop()
+
+            # TELESCOPE POINTING LOGIC GOES HERE -------------
+            arduino_test_loop(self)
+            # TELESCOPE POINTING LOGIC GOES HERE -------------
 
         else:
             self.send_to_console('ERROR: One or multiple invalid values detected. Please try again.')
