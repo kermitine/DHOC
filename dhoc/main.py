@@ -21,7 +21,7 @@ class Ui_MainWindow(object):
         self.line_lat = QtWidgets.QLineEdit(parent=self.centralwidget)
         self.line_lat.setGeometry(QtCore.QRect(10, 40, 251, 20))
         self.line_lat.setAutoFillBackground(False)
-        self.line_lat.setText("")
+        self.line_lat.setText(str(azimuth_settings['latitude']))
         self.line_lat.setClearButtonEnabled(False)
         self.line_lat.setObjectName("line_lat")
         self.label_lat = QtWidgets.QLabel(parent=self.centralwidget)
@@ -38,11 +38,11 @@ class Ui_MainWindow(object):
         self.label_lon.setObjectName("label_lon")
         self.line_lon = QtWidgets.QLineEdit(parent=self.centralwidget)
         self.line_lon.setGeometry(QtCore.QRect(10, 100, 251, 20))
-        self.line_lon.setText("")
+        self.line_lon.setText(str(azimuth_settings['longitude']))
         self.line_lon.setObjectName("line_lon")
         self.line_planet = QtWidgets.QLineEdit(parent=self.centralwidget)
         self.line_planet.setGeometry(QtCore.QRect(10, 150, 251, 20))
-        self.line_planet.setText("")
+        self.line_planet.setText(azimuth_settings['planet'])
         self.line_planet.setObjectName("line_planet")
         self.label_planet = QtWidgets.QLabel(parent=self.centralwidget)
         self.label_planet.setGeometry(QtCore.QRect(10, 130, 251, 21))
@@ -78,12 +78,12 @@ class Ui_MainWindow(object):
         self.label_lon_2.setObjectName("label_lon_2")
         self.line_motorsteps = QtWidgets.QLineEdit(parent=self.centralwidget)
         self.line_motorsteps.setGeometry(QtCore.QRect(540, 40, 251, 20))
-        self.line_motorsteps.setText("")
+        self.line_motorsteps.setText(str(motor_settings['stepper_motor_steps']))
         self.line_motorsteps.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.line_motorsteps.setObjectName("line_motorsteps")
         self.line_motorrpm = QtWidgets.QLineEdit(parent=self.centralwidget)
         self.line_motorrpm.setGeometry(QtCore.QRect(540, 150, 251, 20))
-        self.line_motorrpm.setText("")
+        self.line_motorrpm.setText(str(motor_settings['rpm']))
         self.line_motorrpm.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.line_motorrpm.setObjectName("line_motorrpm")
         self.button_pointtelescope = QtWidgets.QPushButton(parent=self.centralwidget)
@@ -94,7 +94,7 @@ class Ui_MainWindow(object):
         self.button_pointtelescope.setObjectName("button_pointtelescope")
         self.line_gearratio = QtWidgets.QLineEdit(parent=self.centralwidget)
         self.line_gearratio.setGeometry(QtCore.QRect(540, 100, 251, 20))
-        self.line_gearratio.setText("")
+        self.line_gearratio.setText(str(motor_settings['gear_ratio']))
         self.line_gearratio.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.line_gearratio.setObjectName("line_gearratio")
         self.label_motorrpm = QtWidgets.QLabel(parent=self.centralwidget)
@@ -182,56 +182,60 @@ class Ui_MainWindow(object):
 
 
     def find_azimuth_clicked(self, lat, lon, planet):
-            lat = lat.strip()
-            lon = lon.strip()
-            planet_bary = (planet.strip()) + ' Barycenter'
+        azimuth_settings['latitude'] = lat.strip()
+        azimuth_settings['longitude'] = lon.strip()
+        azimuth_settings['planet'] = planet.strip()
 
-            if lat != None and lon != None and planet_bary != None: 
-                try:
-                    lat = float(lat)
-                    lon = float(lon)
-                    planet_bary = str(planet_bary)
-                except ValueError:
-                    self.send_to_console('ERROR: One or multiple incorrect values detected. Please try again.')
-                    return None
-                
-                azimuth = get_azimuth(planet_bary, float(lat), float(lon))
-                if azimuth == 'noplanet':
-                    self.send_to_console(f'ERROR: No planet by the name of "{planet}" found. Please try again.')
-                    return None
+        planet_bary = azimuth_settings['planet'] + ' Barycenter'
 
-                self.send_to_console(f"Calculated Azimuth: {azimuth} degrees")
-            else:
-                self.send_to_console('ERROR: One or multiple invalid values detected. Please try again.')
-                return None
-            
-    def point_telescope_clicked(self, lat, lon, planet, motor_steps, gear_ratio, motor_rpm):
-        lat = lat.strip()
-        lon = lon.strip()
-        planet_bary = (planet.strip()) + ' Barycenter'
-
-        motor_steps = motor_steps.strip()
-        gear_ratio = gear_ratio.strip()
-        motor_rpm = motor_rpm.strip()
-
-
-
-
-        if lat != None and lon != None and planet_bary != None and motor_steps != None and gear_ratio != None and motor_rpm != None: 
+        if azimuth_settings['latitude'] != None and azimuth_settings['longitude'] != None and azimuth_settings['planet'] != None: 
             try:
-                lat = float(lat)
-                lon = float(lon)
+                azimuth_settings['latitude'] = float(azimuth_settings['latitude'])
+                azimuth_settings['longitude'] = float(azimuth_settings['longitude'])
                 planet_bary = str(planet_bary)
-                motor_steps = int(motor_steps)
-                gear_ratio = int(gear_ratio)
-                motor_rpm = int(motor_rpm)
             except ValueError:
                 self.send_to_console('ERROR: One or multiple incorrect values detected. Please try again.')
                 return None
             
-            azimuth = get_azimuth(planet_bary, float(lat), float(lon))
+            azimuth = get_azimuth(planet_bary, azimuth_settings['latitude'], azimuth_settings['longitude'])
             if azimuth == 'noplanet':
-                self.send_to_console(f'ERROR: No planet by the name of "{planet}" found. Please try again.')
+                self.send_to_console(f'ERROR: No planet by the name of "{azimuth_settings['planet']}" found. Please try again.')
+                return None
+
+            self.send_to_console(f"Calculated Azimuth: {azimuth} degrees")
+        else:
+            self.send_to_console('ERROR: One or multiple invalid values detected. Please try again.')
+            return None
+            
+    def point_telescope_clicked(self, lat, lon, planet, motor_steps, gear_ratio, motor_rpm):
+        azimuth_settings['latitude'] = lat.strip()
+        azimuth_settings['longitude'] = lon.strip()
+        azimuth_settings['planet'] = planet.strip()
+
+        planet_bary = azimuth_settings['planet'] + ' Barycenter'
+
+        motor_settings['stepper_motor_steps'] = motor_steps.strip()
+        motor_settings['gear_ratio'] = gear_ratio.strip()
+        motor_settings['rpm'] = motor_rpm.strip()
+
+
+
+
+        if azimuth_settings['latitude'] != None and azimuth_settings['longitude'] != None and azimuth_settings['planet'] != None and motor_settings['stepper_motor_steps'] != None and motor_settings['gear_ratio'] != None and motor_settings['rpm'] != None: 
+            try:
+                azimuth_settings['latitude'] = float(azimuth_settings['latitude'])
+                azimuth_settings['longitude'] = float(azimuth_settings['longitude'])
+                planet_bary = str(planet_bary)
+                motor_settings['stepper_motor_steps'] = int(motor_settings['stepper_motor_steps'])
+                motor_settings['gear_ratio'] = int(motor_settings['gear_ratio'])
+                motor_settings['rpm'] = int(motor_settings['rpm'])
+            except ValueError:
+                self.send_to_console('ERROR: One or multiple incorrect values detected. Please try again.')
+                return None
+            
+            azimuth = get_azimuth(planet_bary, azimuth_settings['latitude'], azimuth_settings['longitude'])
+            if azimuth == 'noplanet':
+                self.send_to_console(f'ERROR: No planet by the name of "{azimuth_settings['planet']}" found. Please try again.')
                 return None
 
 

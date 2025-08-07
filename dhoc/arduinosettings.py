@@ -21,7 +21,7 @@ class Arduino_settings(object):
         self.line_baud = QtWidgets.QLineEdit(parent=Dialog)
         self.line_baud.setGeometry(QtCore.QRect(10, 20, 251, 20))
         self.line_baud.setAutoFillBackground(False)
-        self.line_baud.setText("9600")
+        self.line_baud.setText(str(arduino_settings['baud_rate']))
         self.line_baud.setClearButtonEnabled(False)
         self.line_baud.setObjectName("line_baud")
         self.label_baud = QtWidgets.QLabel(parent=Dialog)
@@ -39,7 +39,7 @@ class Arduino_settings(object):
         self.line_port = QtWidgets.QLineEdit(parent=Dialog)
         self.line_port.setGeometry(QtCore.QRect(10, 70, 251, 20))
         self.line_port.setAutoFillBackground(False)
-        self.line_port.setText("3")
+        self.line_port.setText(str(arduino_settings['port_number']))
         self.line_port.setClearButtonEnabled(False)
         self.line_port.setObjectName("line_port")
 
@@ -60,6 +60,7 @@ class Arduino_settings(object):
 
     def buttonbox_ok_pressed(self, port_number, baud):
         arduino_settings['port'] = f'COM{port_number}'
+        arduino_settings['port_number'] = int(port_number)
         arduino_settings['baud_rate'] = baud
         
 
