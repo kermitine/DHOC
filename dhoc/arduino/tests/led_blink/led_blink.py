@@ -2,7 +2,14 @@ import serial
 import time
 from config.settings import *
 
-
+"""
+Test to see if PySerial is working and communicating with the Arduino board.
+INSTRUCTIONS:
+1) Flash "test_sketch_led.ino" onto Arduino. 
+2) Close IDE so serial monitor doesn't interfere with PySerial.
+3) Run this code. Ensure that the port and baud rate is correct (if not, edit in config.settings)
+4) LED should turn on for 2 secs, then off.
+"""
 
 def arduino_test_loop(main_window_object):
     # Open the serial connection
@@ -24,3 +31,6 @@ def arduino_test_loop(main_window_object):
     print(f'Closing serial at {arduino_settings['port']} on baud {arduino_settings['baud_rate']}...')
     ser.close()
     main_window_object.send_to_console(f'Closing serial at {arduino_settings['port']} on baud {arduino_settings['baud_rate']}')
+
+if __name__ == '__main__':
+    arduino_test_loop()
