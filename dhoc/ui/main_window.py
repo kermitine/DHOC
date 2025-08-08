@@ -186,7 +186,7 @@ class Ui_MainWindow(object):
                 azimuth_settings['longitude'] = float(azimuth_settings['longitude'])
                 planet_bary = str(planet_bary)
             except ValueError:
-                self.send_to_console('ERROR: One or multiple incorrect values detected. Please try again.')
+                self.send_to_console(prompt_invalid_values)
                 return None
             
             azimuth = get_azimuth(planet_bary, azimuth_settings['latitude'], azimuth_settings['longitude'])
@@ -194,9 +194,9 @@ class Ui_MainWindow(object):
                 self.send_to_console(f'ERROR: No planet by the name of "{azimuth_settings['planet']}" found. Please try again.')
                 return None
 
-            self.send_to_console(f"Calculated Azimuth: {azimuth} degrees")
+            self.send_to_console(f"Calculated Azimuth to {planet}: {azimuth} degrees")
         else:
-            self.send_to_console('ERROR: One or multiple invalid values detected. Please try again.')
+            self.send_to_console(prompt_invalid_values)
             return None
             
     def point_telescope_clicked(self, lat, lon, planet, motor_steps, gear_ratio, motor_rpm):
@@ -222,7 +222,7 @@ class Ui_MainWindow(object):
                 motor_settings['gear_ratio'] = int(motor_settings['gear_ratio'])
                 motor_settings['rpm'] = int(motor_settings['rpm'])
             except ValueError:
-                self.send_to_console('ERROR: One or multiple incorrect values detected. Please try again.')
+                self.send_to_console(prompt_invalid_values)
                 return None
             
             azimuth = get_azimuth(planet_bary, azimuth_settings['latitude'], azimuth_settings['longitude'])
@@ -239,7 +239,7 @@ class Ui_MainWindow(object):
             # TELESCOPE POINTING LOGIC GOES HERE -------------
 
         else:
-            self.send_to_console('ERROR: One or multiple invalid values detected. Please try again.')
+            self.send_to_console(prompt_invalid_values)
             return None
 
 if __name__ == "__main__":

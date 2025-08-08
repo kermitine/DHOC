@@ -26,3 +26,4 @@ azimuth_settings = { # defaults are the latitude and longitude for CSUDH Observa
 
 # commonly used prompts
 prompt_input_not_recognized = 'Input not recognized. Please try again.'
+prompt_invalid_values = 'ERROR: One or multiple invalid values detected. Please try again.'
