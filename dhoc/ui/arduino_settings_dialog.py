@@ -9,9 +9,19 @@ from config.settings import *
 
 class Arduino_settings(object):
     def setupUi(self, Dialog):
+        # FONT SETUP HERE ----------
+        label_font = QtGui.QFont('Bahnschrift')
+        label_font.setPointSize(11)
+        button_font = QtGui.QFont('Bahnschrift')
+        button_font.setPointSize(14)
+        big_label_font = QtGui.QFont('Bahnschrift')
+        big_label_font.setPointSize(17)
+        # FONT SETUP HERE ----------
+
         Dialog.setObjectName("Dialog")
         Dialog.resize(376, 100)
         self.buttonBox = QtWidgets.QDialogButtonBox(parent=Dialog)
+        self.buttonBox.setFont(label_font)
         self.buttonBox.setGeometry(QtCore.QRect(280, 30, 81, 51))
         self.buttonBox.setOrientation(QtCore.Qt.Orientation.Vertical)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.StandardButton.Cancel|QtWidgets.QDialogButtonBox.StandardButton.Ok)
@@ -24,15 +34,11 @@ class Arduino_settings(object):
         self.line_baud.setObjectName("line_baud")
         self.label_baud = QtWidgets.QLabel(parent=Dialog)
         self.label_baud.setGeometry(QtCore.QRect(10, 0, 251, 21))
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        self.label_baud.setFont(font)
+        self.label_baud.setFont(label_font)
         self.label_baud.setObjectName("label_baud")
         self.label_port = QtWidgets.QLabel(parent=Dialog)
         self.label_port.setGeometry(QtCore.QRect(10, 50, 251, 21))
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        self.label_port.setFont(font)
+        self.label_port.setFont(label_font)
         self.label_port.setObjectName("label_port")
         self.line_port = QtWidgets.QLineEdit(parent=Dialog)
         self.line_port.setGeometry(QtCore.QRect(10, 70, 251, 20))

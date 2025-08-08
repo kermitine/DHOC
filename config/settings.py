@@ -4,7 +4,7 @@ is apart of the DHOC project, and licensed under
 the GNU AGPL-3.0-or-later. See LICENSE and README for more details.
 """
 
-version = '0.0.4'
+version = '0.0.5'
 
 motor_settings = { # defaults
     'rpm': 3000,
