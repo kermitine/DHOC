@@ -4,14 +4,15 @@ is apart of the DHOC project, and licensed under
 the GNU AGPL-3.0-or-later. See LICENSE and README for more details.
 """
 
-"""
-Test to see if PySerial is working and communicating with the Arduino board.
-INSTRUCTIONS:
-1) Flash "test_sketch_led.ino" onto Arduino. 
-2) Close IDE so serial monitor doesn't interfere with PySerial.
-3) Run this code. Ensure that the port and baud rate is correct (if not, edit in config.settings)
-4) LED should turn on for 2 secs, then off.
-"""
+
+# Test to see if PySerial is working and communicating with the Arduino board.
+# INSTRUCTIONS:
+# 1) Flash "test_sketch_led.ino" onto Arduino. 
+# 2) Connect led to digital pin 12 on Arduino
+# 3) Close IDE so serial monitor doesn't interfere with PySerial.
+# 4) Run this code. Ensure that the port and baud rate is correct (if not, edit in config.settings)
+# 5) LED should turn on for 2 secs, then off.
+
 
 import serial
 import time

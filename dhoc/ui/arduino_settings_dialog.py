@@ -59,7 +59,7 @@ class Arduino_settings(object):
     def buttonbox_ok_pressed(self, port_number, baud):
         arduino_settings['port'] = f'COM{port_number}'
         arduino_settings['port_number'] = int(port_number)
-        arduino_settings['baud_rate'] = baud
+        arduino_settings['baud_rate'] = int(baud)
         
 
 
