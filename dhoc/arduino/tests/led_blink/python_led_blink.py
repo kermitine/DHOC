@@ -38,6 +38,3 @@ def arduino_test_loop(main_window_object):
     print(f'Closing serial at {arduino_settings['port']} on baud {arduino_settings['baud_rate']}...')
     ser.close()
     main_window_object.send_to_console(f'Closing serial at {arduino_settings['port']} on baud {arduino_settings['baud_rate']}')
-
-if __name__ == '__main__':
-    arduino_test_loop()
