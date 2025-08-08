@@ -176,7 +176,7 @@ class Ui_MainWindow(object):
     def find_azimuth_clicked(self, lat, lon, planet):
         azimuth_settings['latitude'] = lat.strip()
         azimuth_settings['longitude'] = lon.strip()
-        azimuth_settings['planet'] = planet.strip()
+        azimuth_settings['planet'] = planet.strip().capitalize()
 
         planet_bary = azimuth_settings['planet'] + ' Barycenter'
 
@@ -194,7 +194,7 @@ class Ui_MainWindow(object):
                 self.send_to_console(f'ERROR: No planet by the name of "{azimuth_settings['planet']}" found. Please try again.')
                 return None
 
-            self.send_to_console(f"Calculated Azimuth to {planet}: {azimuth} degrees")
+            self.send_to_console(f"Calculated Azimuth to {azimuth_settings['planet']}: {azimuth} degrees")
         else:
             self.send_to_console(prompt_invalid_values)
             return None
@@ -202,7 +202,7 @@ class Ui_MainWindow(object):
     def point_telescope_clicked(self, lat, lon, planet, motor_steps, gear_ratio, motor_rpm):
         azimuth_settings['latitude'] = lat.strip()
         azimuth_settings['longitude'] = lon.strip()
-        azimuth_settings['planet'] = planet.strip()
+        azimuth_settings['planet'] = planet.strip().capitalize()
 
         planet_bary = azimuth_settings['planet'] + ' Barycenter'
 

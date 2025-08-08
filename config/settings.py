@@ -18,7 +18,7 @@ arduino_settings = { # defaults
     'port_number': 3
 }
 
-azimuth_settings = { # defaults are the latitude and longitude for CSUDH Observatory
+azimuth_settings = { # defaults for latitude and longitude are for the observatory at CSUDH
     'latitude': 33.863907, 
     'longitude': -118.255190,
     'planet': 'Mars'
