@@ -6,8 +6,8 @@ the GNU AGPL-3.0-or-later. See LICENSE and README for more details.
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 from config.settings import *
-from dhoc.angles.getazimuth import *
-from dhoc.arduino.tests.led_blink.led_blink import *
+from dhoc.angles.getazimuth import get_azimuth
+from dhoc.arduino.tests.led_blink.python_led_blink import arduino_test_loop
 from dhoc.ui.arduino_settings_dialog import Arduino_settings
 
 class Ui_MainWindow(object):
